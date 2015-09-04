@@ -157,7 +157,33 @@ namespace Revit.Elements
                 //Update the level name
                 ElementUtils.UpdateLevelName(ref name);
             }
+            //check again now that the name has been updated are in the same form,
+            //and avoid modifying the name,and node if the names are the same,
+            //after we strip off the (num) at the end.
+            
+           //we're going to remove both of the (num) from the names
 
+            //find those numbers
+            var numInCurrentName = InternalElement.Name.Split('(').Last().Replace(")","");
+            var numInDesiredName = name.Split('(').Last().Replace(")", "");
+
+            
+            var nameIndex = InternalElement.Name.LastIndexOf(numInCurrentName);
+            var chars = InternalElement.Name.ToList();
+            chars.RemoveRange(nameIndex, numInCurrentName.Length);
+            var currentNameBase=  string.Concat(chars);
+
+            nameIndex = name.LastIndexOf(numInDesiredName);
+            chars = name.ToList();
+            chars.RemoveRange(nameIndex, numInDesiredName.Length);
+            var inputNameBase = string.Concat(chars);
+
+
+            if (string.CompareOrdinal(currentNameBase, inputNameBase) == 0 
+                && (!string.IsNullOrEmpty(currentNameBase) ||!string.IsNullOrEmpty(currentNameBase) ))
+                    return;
+
+          
             TransactionManager.Instance.EnsureInTransaction(Document);
             this.InternalLevel.Name = name;
             TransactionManager.Instance.TransactionTaskDone();
