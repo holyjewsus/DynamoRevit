@@ -378,4 +378,7 @@
   <data name="WallLocationLineDescription" xml:space="preserve">
     <value>Wall locations.</value>
   </data>
+  <data name="ExportTextQualifierDescription" xml:space="preserve">
+    <value>How to qualify text fields. Default is DoubleQuote.</value>
+  </data>
 </root>
