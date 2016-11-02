@@ -106,6 +106,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply a Category..
+        /// </summary>
+        internal static string CategoryArgumentException {
+            get {
+                return ResourceManager.GetString("CategoryArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified View Template is not valid for this View..
+        /// </summary>
+        internal static string CategoryVisibilityOverrideError {
+            get {
+                return ResourceManager.GetString("CategoryVisibilityOverrideError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -165,15 +183,6 @@ namespace Revit.Properties {
         internal static string CurtainPanelShouldRepresentRevitPanel {
             get {
                 return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot find Curtain System Type in active document..
-        /// </summary>
-        internal static string CurtainSystemTypeNotFound {
-            get {
-                return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
             }
         }
         
@@ -255,15 +264,6 @@ namespace Revit.Properties {
         internal static string DirectShapeInvalidArgument {
             get {
                 return ResourceManager.GetString("DirectShapeInvalidArgument", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Document does not support global parameters..
-        /// </summary>
-        internal static string DocumentDoesNotSupportGlobalParams {
-            get {
-                return ResourceManager.GetString("DocumentDoesNotSupportGlobalParams", resourceCulture);
             }
         }
         
@@ -493,15 +493,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected face cannot be used to create a wall. Please use a mass face instead..
-        /// </summary>
-        internal static string InvalidFace {
-            get {
-                return ResourceManager.GetString("InvalidFace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to FilterType is not valid..
         /// </summary>
         internal static string InvalidFilterType {
@@ -516,15 +507,6 @@ namespace Revit.Properties {
         internal static string InvalidHost {
             get {
                 return ResourceManager.GetString("InvalidHost", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Floor Shape cannot be edited..
-        /// </summary>
-        internal static string InvalidShapeEditor {
-            get {
-                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
             }
         }
         
@@ -588,15 +570,6 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name already in use..
-        /// </summary>
-        internal static string NameAlreadyInUse {
-            get {
-                return ResourceManager.GetString("NameAlreadyInUse", resourceCulture);
             }
         }
         
@@ -781,15 +754,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Roof type not found..
-        /// </summary>
-        internal static string RoofTypeNotFound {
-            get {
-                return ResourceManager.GetString("RoofTypeNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
         /// </summary>
         internal static string SamplePointsMismatchError {
@@ -867,6 +831,15 @@ namespace Revit.Properties {
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting the image..
+        /// </summary>
+        internal static string ViewExportImageError {
+            get {
+                return ResourceManager.GetString("ViewExportImageError", resourceCulture);
             }
         }
         
