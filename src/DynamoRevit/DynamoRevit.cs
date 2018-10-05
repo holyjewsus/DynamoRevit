@@ -113,7 +113,6 @@ namespace Dynamo.Applications
     public class DynamoRevit : IExternalCommand
     {
         private static List<Action> idleActions = new List<Action>();
-        enum Versions { ShapeManager = 221 }
 
         private static DynamoRevitCommandData extCommandData;
         private static DynamoViewModel dynamoViewModel;
