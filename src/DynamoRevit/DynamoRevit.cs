@@ -266,6 +266,7 @@ namespace Dynamo.Applications
         /// located.</param>
         /// <returns>Returns the full path to geometry factory assembly.</returns>
         /// 
+        [Obsolete("Please use the overload which specifies the version of the geometry library to load")]
         public static string GetGeometryFactoryPath(string corePath)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
