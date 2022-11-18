@@ -74,6 +74,24 @@ namespace RevitServices.Threading
         }
     }
 }
+public class SplashScreenExternalEventHandler : IExternalEventHandler
+{
+    private Action callback;
+    public void Execute(UIApplication app)
+    {
+        callback();
+    }
+
+    public string GetName()
+    {
+        return nameof(SplashScreenExternalEventHandler);
+    }
+
+    internal SplashScreenExternalEventHandler(Action callback)
+    {
+        this.callback = callback;
+    }
+}
 
 namespace Dynamo.Applications
 {
@@ -186,7 +204,7 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
-
+        public static ExternalEvent SplashScreenExternalEvent { get; set; }
         /// <summary>
         /// Based on the RevitDynamoModelState a dependent component can take certain 
         /// decisions regarding its UI and functionality.
@@ -248,7 +266,15 @@ namespace Dynamo.Applications
         }
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
-        {   
+        {
+            var ssEventHandler = new SplashScreenExternalEventHandler(new Action(() =>
+            {
+                LoadDynamoView();
+            }));
+            //Register SplashScreenExternalEventHandler so Revit will call our callback
+            //we requested with API access.
+            SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
+
             startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
@@ -290,8 +316,13 @@ namespace Dynamo.Applications
 
                 UpdateSystemPathForProcess();
 
-                var splashScreen = new Dynamo.UI.Views.SplashScreen();
-                splashScreen.DynamicSplashScreenReady += LoadDynamoView;
+                splashScreen = new Dynamo.UI.Views.SplashScreen();
+                //when the splashscreen is ready, raise a request to revit to call
+                //our callback within an api context.
+                splashScreen.DynamicSplashScreenReady += ()=>
+                {
+                    SplashScreenExternalEvent.Raise();
+                };
                 splashScreen.Show();
             }
             catch (Exception ex)
@@ -315,6 +346,7 @@ namespace Dynamo.Applications
 
             return Result.Succeeded;
         }
+
 
         private void LoadDynamoView()
         {
